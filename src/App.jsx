@@ -1,19 +1,21 @@
 import { useState, useEffect } from 'react'
-import Info from './Info/Info'
 import './App.css'
 import { buttons } from './buttons'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
+import { BsTranslate, BsFillSkipEndFill } from 'react-icons/bs'
+//import { BsFillSkipEndFill } from 'reat-icons/bs'
+import Info from './Info/Info'
+import Tasks from './Tasks/Tasks'
 
 function App() {
   const [timer, setTimer] = useState(25 * 60) // Total de segundos em um determinado periodo de tempo(25min x 60seg)
   const [isTimerOn, setIsTimerOn] = useState(false)
   const [message, setMessage] = useState('Time to focus!')
-  const [totalOFSeconds, setTotalOfSeconds] = useState(timer)
   const [percent, setPercent] = useState({ value: 0, total: timer })
+  const [showInfo, setShowInfo] = useState(false)
   let timeout
   let minutes = Math.floor(timer / 60)
   let seconds = timer % 60
-  console.log(totalOFSeconds)
 
   useEffect(() => {
     if (isTimerOn) {
@@ -90,9 +92,18 @@ function App() {
         </button>
       </section>
 
-      <button type='button' className='info-btn' style={{position: 'absolute', top: '0', right: '0'}}>
-        <AiOutlineInfoCircle />
-      </button>
+      <section className='section-info'>
+        <button type='button' className='info-btn' onClick={() => setShowInfo(!showInfo)}>
+          <AiOutlineInfoCircle />
+        </button>
+        <button type='button' className='language-btn'>
+          <BsTranslate />
+        </button>
+      </section>
+
+      {showInfo && <Info />}
+
+      <Tasks />
     </main>
   )
 }
