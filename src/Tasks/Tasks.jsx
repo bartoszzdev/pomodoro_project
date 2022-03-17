@@ -29,7 +29,7 @@ function Tasks() {
                  onChange={(e) => setItem(e.target.value)} 
                 />
                 <button type='button' onClick={renderList}>
-                    Add task
+                    Add 
                 </button>
             </form>
 

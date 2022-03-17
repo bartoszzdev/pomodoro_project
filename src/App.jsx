@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import { buttons } from './buttons'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
-import { BsTranslate, BsFillSkipEndFill } from 'react-icons/bs'
-//import { BsFillSkipEndFill } from 'reat-icons/bs'
+import { BsFillSkipEndFill } from 'react-icons/bs'
 import Info from './Info/Info'
 import Tasks from './Tasks/Tasks'
 
 function App() {
   const [timer, setTimer] = useState(25 * 60) // Total de segundos em um determinado periodo de tempo(25min x 60seg)
   const [isTimerOn, setIsTimerOn] = useState(false)
+  const [isTimerDone, setIsTimerDone] = useState(false)
   const [message, setMessage] = useState('Time to focus!')
   const [percent, setPercent] = useState({ value: 0, total: timer })
   const [showInfo, setShowInfo] = useState(false)
@@ -29,12 +29,18 @@ function App() {
       window.document.title = `Pomodoro`
     }
 
+    if (timer === 0) {
+      setIsTimerOn(false)
+      setIsTimerDone(true)
+    }
+
     return () => clearTimeout(timeout)
   })
 
   const handleTimer = (id, message) => {
     clearTimeout(timeout)
     setIsTimerOn(false)
+    setIsTimerDone(false)
 
     if (id === 25) {
       setTimer(prevState => 25 * 60)
@@ -90,18 +96,21 @@ function App() {
         >
           {isTimerOn ? 'stop' : 'start'}
         </button>
+
+        {isTimerDone && (
+          <audio autoPlay>
+            <source src="http://www.noa-soft.com/DownLoadFiles/alarm_beep.wav" type="audio/x-wav" />
+          </audio>
+        )}
       </section>
 
       <section className='section-info'>
         <button type='button' className='info-btn' onClick={() => setShowInfo(!showInfo)}>
           <AiOutlineInfoCircle />
         </button>
-        <button type='button' className='language-btn'>
-          <BsTranslate />
-        </button>
       </section>
 
-      {showInfo && <Info />}
+      {showInfo && <Info setShowInfo={setShowInfo} />}
 
       <Tasks />
     </main>

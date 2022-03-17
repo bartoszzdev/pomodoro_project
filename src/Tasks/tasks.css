@@ -6,7 +6,7 @@
 .tasks-form {
     margin-top: 48px;
     width: 100%;
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    box-shadow: 0 8px 32px 0 rgba(151, 37, 33, 0.726);
     border-radius: 8px;
 }
 
@@ -25,7 +25,7 @@
 .tasks-form button {
     padding: 10px 0px;
     width: 20%;
-    background-color: rgb(150, 108, 219);
+    background-color:  rgba(184, 76, 73, 0.972);
     font-size: 1.3rem;
     color: #fff;
     border-top-right-radius: 8px;
@@ -52,7 +52,7 @@
     text-transform: capitalize;
     color: rgb(85, 85, 85);
     background-color: #fff;
-    box-shadow: 0 8px 16px 0 rgba( 31, 38, 135, 0.37 );
+    box-shadow: 0 8px 16px 0 rgba(151, 37, 33, 0.726);
     border-radius: 5px;
     transition: transform 1.5s ease;
     animation: slideUp 2s ease;
@@ -111,5 +111,17 @@
 }
 
 .btn-done {
-    color: rgb(165, 165, 250) ;
+    color:  rgb(217, 85, 80) ;
+}
+
+@media screen and (max-width: 500px) {
+    .tasks-form {
+        margin-top: 25px;
+    }
+
+    .task-item {
+        padding: 5px 12px;
+        margin: 8px 0;
+        font-size: 1.2rem;
+    }
 }
